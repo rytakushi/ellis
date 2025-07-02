@@ -1,0 +1,19 @@
+# 'services' é a chave principal onde todos os seus contêineres (serviços) são definidos.
+services:
+  # 'app' é o nome que damos ao nosso serviço/contêiner da aplicação FastAPI.
+  app:
+    # 'build: .' instrui o Docker Compose a construir a imagem a partir do Dockerfile
+    # localizado no diretório atual (onde o docker-compose.yml está).
+    build: .
+    container_name: api # Nome do conatainer
+    # 'ports' mapeia uma porta do seu computador (host) para uma porta dentro do contêiner.
+    # Formato: "HOST:CONTAINER". Aqui, a porta 8000 do seu PC é ligada à porta 8000 do contêiner.
+    ports:
+      - "8000:8000"
+    # 'volumes' sincroniza um diretório do seu computador com um diretório dentro do contêiner.
+    # '.:/app' monta o diretório atual ('.') no diretório '/app' do contêiner.
+    # Isso é essencial para que a flag '--reload' funcione, pois as alterações no seu código
+    # são refletidas instantaneamente dentro do contêiner.
+    volumes:
+      - .:/app
+
